@@ -20,7 +20,7 @@ public class KitManager {
     public void applyKit(Player player, String kitName) {
         Kit kit = kits.get(kitName);
         if (kit != null) {
-            kit.apply(player;
+            kit.apply(player);
         }
     }
 }
