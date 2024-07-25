@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +15,27 @@ public class RoomManager {
 
     private final SimuladorGame plugin;
     private final List<GameRoom> rooms;
+    private final File mapDirectory;
 
     public RoomManager(SimuladorGame plugin) {
         this.plugin = plugin;
         this.rooms = new ArrayList<>();
+        this.mapDirectory = new File(plugin.getDataFolder(), "simulador-maps");
+        if (!mapDirectory.exists()) {
+            mapDirectory.mkdir();
+        }
     }
 
-    public void LoadRooms(int count) {
-        for (int i = 0; i < count; i++) {
-            GameRoom room = createRoom("Room_" + (i + 1));
-            if (room != null) {
-                rooms.add(room);
-                Bukkit.getLogger().info("Room " + room.getName()+ " loaded.");
-
+    public void loadRooms(int count) {
+        File[] mapFolders = mapDirectory.listFiles(File::isDirectory);
+        if (mapFolders != null) {
+            for (int i = 0; i < count && i < mapFolders.length; i++) {
+                File mapFolder = mapFolders[i];
+                GameRoom room = createRoom(mapFolder.getName());
+                if (room != null) {
+                    rooms.add(room);
+                    Bukkit.getLogger().info("Room " + room.getName() + " loaded.");
+                }
             }
         }
     }

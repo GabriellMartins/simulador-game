@@ -10,6 +10,10 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.32")
@@ -18,12 +22,11 @@ dependencies {
     implementation("redis.clients:jedis:5.1.2")
 
     compileOnly(files("C:\\Users\\Anderson\\Desktop\\Prisma Server\\lobby1\\PaperSpigot-1.8.8-R0.1-SNAPSHOT-latest.jar"))
-
 }
+
 tasks {
     compileJava {
         options.encoding = "UTF-8"
-        options.release.set(8)
     }
 
     shadowJar {
