@@ -5,6 +5,7 @@ import com.br.minecraft.kits.register.ExempleKit;
 import com.br.minecraft.listeners.GlobalListeners;
 import com.br.minecraft.room.RoomManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
 
 public class SimuladorGame extends JavaPlugin {
 
@@ -14,6 +15,7 @@ public class SimuladorGame extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Scoreboard scoreboard = getServer().getScoreboardManager().getMainScoreboard();
         getLogger().info("Simulador Game habilitado!");
         getServer().getPluginManager().registerEvents(new GlobalListeners(), this);
         kitManager = new KitManager();

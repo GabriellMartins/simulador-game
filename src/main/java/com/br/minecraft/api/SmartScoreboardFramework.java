@@ -184,7 +184,7 @@ public abstract class SmartScoreboardFramework<T> {
 
     private boolean deleted = false;
 
-    protected SmartScoreboardFramework(Player player) {
+    protected SmartScoreboardFramework(String player) {
         this.player = Objects.requireNonNull(player, "player");
         this.id = "sb-" + Integer.toHexString(ThreadLocalRandom.current().nextInt());
 
