@@ -1,6 +1,6 @@
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("jvm") version "1.8.21" // Ensure compatibility with Java 8
 }
 
 group = "com.br.minecraft"
@@ -29,12 +29,15 @@ tasks {
         options.encoding = "UTF-8"
     }
 
-    shadowJar {
-        archiveClassifier.set("")
-        relocate("org.bstats", "com.br.minecraft.libs.bstats")
+    jar {
+        archiveBaseName.set("simulador-game")
+        archiveVersion.set("1.0.0-SNAPSHOT")
+        manifest {
+            attributes["Main-Class"] = "com.br.minecraft.SimuladorGame"
+        }
     }
 
     build {
-        dependsOn(shadowJar)
+        dependsOn(jar)
     }
 }

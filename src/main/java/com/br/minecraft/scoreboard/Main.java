@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Main {
 
     public void displayGameStarted(Player player, String opponentName, KitManager kitManager) {
-        var scoreboard = new SmartScoreboard("PARTIDA INICIOU");
+        var scoreboard = new SmartScoreboard(player); // Assuming this constructor requires a Player
         var kit = kitManager.getKit(player.getName());
         var kitName = (kit != null) ? kit.getName() : "Nenhum Kit";
 
@@ -29,7 +29,7 @@ public class Main {
     }
 
     public void displayCountdown(Player player, int minutesLeft, KitManager kitManager) {
-        var scoreboard = new SmartScoreboard("AGUARDE PRA PARTIDA INICIAR");
+        var scoreboard = new SmartScoreboard(player); // Assuming this constructor requires a Player
         var kit = kitManager.getKit(player.getName());
         var kitName = (kit != null) ? kit.getName() : "Nenhum Kit";
 
@@ -48,7 +48,7 @@ public class Main {
     }
 
     public void displayGameEnded(Player player, boolean won) {
-        var scoreboard = new SmartScoreboard("PARTIDA ACABOU");
+        var scoreboard = new SmartScoreboard(player); // Assuming this constructor requires a Player
 
         var lines = new ArrayList<String>();
         lines.add("§b§lSIMULADOR-GAME");

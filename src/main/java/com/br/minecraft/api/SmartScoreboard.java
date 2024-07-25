@@ -25,9 +25,10 @@ public final class SmartScoreboard extends SmartScoreboardFramework<String> {
         }
     }
 
-    public SmartScoreboard(String title) {
-        super(title);
+    public SmartScoreboard(Player player) {
+        super(player);
     }
+
 
     @Override
     public void updateTitle(String title) {

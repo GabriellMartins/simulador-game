@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 
 public abstract class SmartScoreboardFramework<T> {
 
+
+
     private static final Map<Class<?>, Field[]> PACKETS = new HashMap<>(8);
 
     protected static final String[] COLOR_CODES = Arrays.stream(ChatColor.values())
@@ -184,7 +186,7 @@ public abstract class SmartScoreboardFramework<T> {
 
     private boolean deleted = false;
 
-    protected SmartScoreboardFramework(String player) {
+    protected SmartScoreboardFramework(Player player) {
         this.player = Objects.requireNonNull(player, "player");
         this.id = "sb-" + Integer.toHexString(ThreadLocalRandom.current().nextInt());
 
