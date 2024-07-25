@@ -20,4 +20,6 @@ public class GlobalListeners implements Listener {
             item.setType(Material.BOWL);
         }
     }
+
+
 }

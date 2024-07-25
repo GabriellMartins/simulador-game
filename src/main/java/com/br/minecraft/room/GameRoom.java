@@ -22,7 +22,7 @@ public class GameRoom {
         this.name = name;
         this.world = world;
         this.players = new HashSet<>();
-        this.id = -1; 
+        this.id = -1;
 
         RoomData roomData = new RoomData(id, name, "active");
         RoomService.saveRoomData(id, roomData);
