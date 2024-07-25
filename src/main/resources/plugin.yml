@@ -1,0 +1,5 @@
+name: SimuladorGame
+version: 1.0
+author: Sh4wsz
+main: com.br.minecraft.SimuladorGame
+api-version: 1.13
