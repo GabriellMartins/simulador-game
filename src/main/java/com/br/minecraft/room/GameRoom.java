@@ -1,5 +1,7 @@
 package com.br.minecraft.room;
 
+import com.br.minecraft.backend.RoomService;
+import com.br.minecraft.room.backend.RoomData;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -12,11 +14,25 @@ public class GameRoom {
     private final String name;
     private final World world;
     private final Set<Player> players;
+    private final int id;
 
-    public  GameRoom(String name, World world) {
+    private static final int MAX_PLAYERS = 2;
+
+    public GameRoom(String name, World world) {
         this.name = name;
         this.world = world;
         this.players = new HashSet<>();
+        this.id = -1; 
+
+        RoomData roomData = new RoomData(id, name, "active");
+        RoomService.saveRoomData(id, roomData);
+    }
+
+    public GameRoom(int id, String name, World world, Set<Player> players) {
+        this.name = name;
+        this.world = world;
+        this.players = players;
+        this.id = id;
     }
 
     public String getName() {
@@ -28,8 +44,12 @@ public class GameRoom {
     }
 
     public void addPlayer(Player player) {
-        players.add(player);
-        player.teleport(world.getSpawnLocation());
+        if (players.size() < MAX_PLAYERS) {
+            players.add(player);
+            player.teleport(world.getSpawnLocation());
+        } else {
+            player.sendMessage("A sala já está cheia!");
+        }
     }
 
     public void removePlayer(Player player) {
@@ -40,8 +60,9 @@ public class GameRoom {
     public Set<Player> getPlayers() {
         return players;
     }
+
     public void unload() {
-        for (Player player :  new HashSet<>(players)) {
+        for (Player player : new HashSet<>(players)) {
             removePlayer(player);
         }
 

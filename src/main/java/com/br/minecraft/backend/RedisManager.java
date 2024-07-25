@@ -1,12 +1,24 @@
 package com.br.minecraft.backend;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import redis.clients.jedis.Jedis;
 
-public class RedisManager {
-    private static final String REDIS_HOST = "localhost";
-    private static final int REDIS_PORT = 6379;
+import java.io.File;
+import java.io.IOException;
 
-    private static Jedis jedis = new Jedis(REDIS_HOST, REDIS_PORT);
+public class RedisManager {
+    private static Jedis jedis;
+
+    static {
+        File configFile = new File("C:\\Users\\Anderson\\Desktop\\Prisma Server\\lobby1\\plugins\\lobby\\config.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
+
+        String redisHost = config.getString("redis.host", "localhost");
+        int redisPort = config.getInt("redis.port", 6379);
+
+        jedis = new Jedis(redisHost, redisPort);
+    }
 
     public static Jedis getJedis() {
         return jedis;

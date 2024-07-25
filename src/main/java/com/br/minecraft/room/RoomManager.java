@@ -44,9 +44,7 @@ public class RoomManager {
         for (GameRoom room : rooms) {
             room.unload();
             Bukkit.getLogger().info("Room " + room.getName() + " unloaded");
-
         }
-
         rooms.clear();
     }
 
@@ -71,5 +69,4 @@ public class RoomManager {
         World world = wc.createWorld();
         return new GameRoom(name, world);
     }
-
 }
